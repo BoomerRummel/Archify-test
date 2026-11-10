@@ -1,0 +1,88 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Archify 测试报告</title><style>*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#f5f7fa;color:#202c3c;font:16px/1.75 system-ui,-apple-system,"Segoe UI","Microsoft YaHei",sans-serif}main{max-width:1080px;margin:auto;padding:48px 24px 72px}a{color:#225ac2;text-underline-offset:4px}header{border-bottom:1px solid #dce2e9;padding-bottom:24px;margin-bottom:32px}h1{font-size:34px;line-height:1.35;letter-spacing:-1px;margin:12px 0}h2{margin-top:42px}h3{margin-top:42px;padding-top:20px;border-top:1px solid #dce2e9}p{margin:12px 0}.muted{color:#627086}.eyebrow{font-size:13px;font-weight:700;letter-spacing:2px;color:#225ac2}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}.card{background:white;border:1px solid #dce2e9;border-radius:12px;padding:24px}.card h2{font-size:20px;margin:0 0 10px}.card ul{padding-left:20px;margin-bottom:0}.card li{margin:7px 0}nav{display:flex;gap:18px;flex-wrap:wrap}blockquote{margin:12px 0;padding:14px 20px;border-left:3px solid #759bd8;background:#eef3fa}table{width:100%;border-collapse:collapse;background:white}th,td{text-align:left;vertical-align:top;padding:12px 16px;border:1px solid #dce2e9}th{background:#edf2f8}.table-wrap{overflow-x:auto;margin:18px 0}li{margin:8px 0}.report{max-width:960px}footer{margin-top:40px;color:#627086;font-size:14px}@media(max-width:660px){main{padding:28px 16px}.grid{grid-template-columns:1fr}h1{font-size:28px}.card{padding:20px}th,td{min-width:160px}}</style></head><body><main class="report"><nav><a href="index.html">← 测试与产物首页</a></nav><h1>Archify 架构图Agent测试文档</h1>
+<h2>一、测试环境</h2>
+<div class="table-wrap"><table><tr><th>项目</th><th>配置与说明</th></tr><tr><td>测试日期</td><td>2026 年 11 月 9 日</td></tr><tr><td>运行平台</td><td>Codex 桌面端，Windows 本地环境</td></tr><tr><td>测试工具</td><td>Archify Skill 3.2.0</td></tr></table></div>
+<h2>二、测试内容</h2>
+<h3 id="B1">B1：单篇论文模型架构复现</h3>
+<p>输入材料：GLOSS 论文 PDF。</p>
+<p><strong>1. 测试 Prompt</strong></p>
+<p>首次生成：</p>
+<blockquote>请使用 Archify，忠实复现我提供的论文中的完整模型架构和数据流，明确区分训练与推理流程，对关键技术关系提供论文依据，并输出两张独立、可交互的 HTML 图表。</blockquote>
+<p>局部修改：</p>
+<blockquote>请将模型架构图中对应论文 Figure 1 的特征融合模块进一步展开，并明确训练阶段和推理阶段的差异。要求保持其他模块、原有连接和数据处理顺序不变，同时列出具体修改内容。</blockquote>
+<p><strong>2. HTML 产物</strong></p>
+<div class="table-wrap"><table><tr><th>产物</th><th>内容</th></tr><tr><td><a href="artifacts/B1/gloss-training.html">训练边界与运行准备</a></td><td>说明系统分工、运行配置</td></tr><tr><td><a href="artifacts/B1/gloss-inference.html">完整推理架构与数据流</a></td><td>展示信息检索、代码计算、证据综合与回答流程</td></tr></table></div>
+<p><strong>3. 优缺点</strong></p>
+<p><strong>优点</strong></p>
+<ul><li><strong>流程表达清楚</strong>：支持分步查看，配有中文说明和例子。</li><li><strong>局部修改稳定</strong>：保留原有节点位置和 19 条连接，没有打乱原图。</li><li><strong>交互功能实用</strong>：支持搜索、缩放、节点聚焦和导出。</li></ul>
+<p><strong>缺点</strong></p>
+<ul><li><strong>初版可读性不足</strong>：需要追加要求，才能让未读论文的人更容易看懂。</li><li><strong>模块展开不够直观</strong>：主要补充文字，没有画出更细的内部结构。</li><li><strong>连线可读性偏弱</strong>：部分连线交叉、绕行，追踪流程较费劲。</li></ul>
+<p><strong>总结</strong>：主要架构清楚，局部修改也没有打乱原图；不足在于模块内部结构展开不够，部分连线难以追踪。</p>
+<h3 id="B2">B2：5 篇论文技术路线比较</h3>
+<p>输入材料：5 篇论文 PDF，后追加第 6 篇论文。</p>
+<p><strong>1. 测试 Prompt</strong></p>
+<p>首次生成：</p>
+<blockquote>使用 Archify 比较项目中五篇研究方法不同的论文，生成技术路线关系图和交互式对比页面。必须保留每篇论文的数据集、任务、指标与证据差异，禁止直接比较不可比的实验结果。</blockquote>
+<p>追加论文：</p>
+<blockquote>现在加入第六篇采用不同技术方法的论文 P6。请在现有技术路线图中合理安置它，说明它与 P1–P5 的区别，并保留原有正确的技术关系。</blockquote>
+<p><strong>2. HTML 产物</strong></p>
+<div class="table-wrap"><table><tr><th>产物</th><th>内容</th></tr><tr><td><a href="artifacts/B2/technical-routes.html">技术路线关系图</a></td><td>并列展示各篇论文的输入、方法、任务与证据</td></tr><tr><td><a href="artifacts/B2/paper-comparison.html">交互式论文对比页面</a></td><td>对照数据、实验结果和研究局限，补充 P6 与前五篇的区别</td></tr></table></div>
+<p><strong>3. 优缺点</strong></p>
+<p><strong>优点</strong></p>
+<ul><li><strong>对比信息完整</strong>：保留各篇的数据、任务、指标和论文依据。</li><li><strong>比较边界清晰</strong>：说明不可比项，没有混合不同实验结果进行排名。</li><li><strong>追加修改稳定</strong>：加入 P6 后，原有节点和连接保持不变。</li></ul>
+<p><strong>缺点</strong></p>
+<ul><li><strong>重点不够突出</strong>：文字和表格较多，核心区别不易一眼看出。</li><li><strong>论文关联不够直观</strong>：跨论文联系仍需结合文字理解。</li><li><strong>内容不够精简</strong>：P6 部分存在重复，页面偏长。</li></ul>
+<p><strong>总结</strong>：逐篇查资料比较方便，但快速比较时，几篇论文的关键差异还不够醒目。</p>
+<h3 id="B3">B3：研究领域知识地图</h3>
+<p>输入材料：5 篇论文笔记。</p>
+<p><strong>1. 测试 Prompt</strong></p>
+<blockquote>用Archify将 5 篇论文笔记按研究问题、数据模态、AI 方法、数据集和应用进行多维度知识组织，生成可交互的知识地图，并确保论文来源和交叉关系得到保留。</blockquote>
+<p><strong>2. HTML 产物</strong></p>
+<div class="table-wrap"><table><tr><th>产物</th><th>内容</th></tr><tr><td><a href="artifacts/B3/index.html">交互式论文知识地图</a></td><td>按五个维度查看概念、论文及来源笔记</td></tr><tr><td><a href="artifacts/B3/paper-relations.html">论文交叉关系总览</a></td><td>展示跨论文的共同问题与方法联系</td></tr></table></div>
+<p><strong>3. 优缺点</strong></p>
+<p><strong>优点</strong></p>
+<ul><li><strong>知识组织清晰</strong>：可按五个维度切换、按论文筛选，方便从不同角度查找内容。</li><li><strong>来源追踪完整</strong>：概念能对应到笔记章节和行号，并保留完整原笔记。</li><li><strong>关系标注清楚</strong>：标明哪些联系来自笔记，哪些是整理时归纳的</li></ul>
+<p><strong>缺点</strong></p>
+<ul><li><strong>连线辨识度偏低</strong>：部分连线较淡且相互交叉，多篇同时展示时不易追踪。</li><li><strong>全局概览有限</strong>：五个维度需要切换查看，难以在同一视图中看全它们之间的联系。</li><li><strong>原文定位不够直接</strong>：主要追踪到本地笔记，部分论文缺少 DOI 或原文链接。</li></ul>
+<p><strong>总结</strong>：查找概念和回看笔记方便，但还难以一眼看清整个领域的关系。</p>
+<h3 id="B4">B4：大模型新技术讲解</h3>
+<p>输入材料：Adaptive-RAG、GainRAG、U-RAG 三篇论文，以及《研究思路简要总结》。</p>
+<p><strong>1. 测试 Prompt</strong></p>
+<blockquote>请使用 <strong>Archify Skill</strong>，根据我提供的 <strong>N 篇 RAG（检索增强生成）领域的前沿方法论文</strong>及我的<strong>研究设想</strong>，生成技术原理图与创新研究方案图，用于科研组的前沿大模型技术分享。</blockquote>
+<p><strong>2. HTML 产物</strong></p>
+<div class="table-wrap"><table><tr><th>产物</th><th>内容</th></tr><tr><td><a href="artifacts/B4/index.html">技术分享图集入口</a></td><td>按讲解顺序组织五张技术图</td></tr><tr><td><a href="artifacts/B4/01-adaptive-rag.html">Adaptive-RAG 原理图</a></td><td>展示检索前策略选择及监督标签构造</td></tr><tr><td><a href="artifacts/B4/02-gainrag.html">GainRAG 原理图</a></td><td>展示增益信号、偏好蒸馏和单段证据选择</td></tr><tr><td><a href="artifacts/B4/03-u-rag.html">U-RAG 原理图</a></td><td>展示条件边际增益、证据累积和停止机制</td></tr><tr><td><a href="artifacts/B4/04-proposed-training.html">研究方案：离线训练</a></td><td>展示质量与成本标签、路由训练和代价设计</td></tr><tr><td><a href="artifacts/B4/05-proposed-inference.html">研究方案：在线路由</a></td><td>展示在线路径选择与实验验证思路</td></tr></table></div>
+<p><strong>3. 优缺点</strong></p>
+<p><strong>优点</strong></p>
+<ul><li><strong>技术分工清楚</strong>：讲明三种方法分别选择策略、段落和下一条证据，容易抓住区别。</li><li><strong>研究衔接自然</strong>：从已有方法延伸到自己的训练与推理方案，讲解顺序连贯。</li><li><strong>方案边界明确</strong>：区分论文已有机制、拟议创新和待验证假设，便于讨论方案是否可行。</li></ul>
+<p><strong>缺点</strong></p>
+<ul><li><strong>阅读门槛偏高</strong>：公式、训练目标和专业术语较多，需要一定 RAG 基础。</li><li><strong>跨图对照不便</strong>：五张图分别打开，比较模块和决策差异时需要来回切换。</li><li><strong>首页缺少总览</strong>：首页以图集导航为主，核心差异和研究主张仍需进入各图或阅读讲解稿。</li></ul>
+<p><strong>总结</strong>：适合有基础的科研组做技术讨论；若面向初学者，还需补充更直白的例子和一页总览。</p>
+<h3 id="B5">B5：组会分享页面</h3>
+<p>输入材料：GLOSS、MindScape、The Typing Cure 三篇论文 PDF，由工具整理调研笔记。</p>
+<p><strong>1. 测试 Prompt</strong></p>
+<p>首次生成：</p>
+<blockquote>请调用 Archify Skill，将我提供的一份真实科研论文调研笔记制作成适合科研组组会展示的交互式独立 HTML 页面。</blockquote>
+<p><strong>2. HTML 产物</strong></p>
+<div class="table-wrap"><table><tr><th>产物</th><th>内容</th></tr><tr><td><a href="artifacts/B5/research.html">三篇论文组会分享页面</a></td><td>按问题、方法、结果、局限、启发和讨论组织内容，嵌入技术图、结果图及 10 分钟讲解建议</td></tr></table></div>
+<p><strong>3. 优缺点</strong></p>
+<p><strong>优点</strong></p>
+<ul><li><strong>讲解结构完整</strong>：从研究问题讲到组内讨论，并给出 10 分钟时间安排。</li><li><strong>结果交代完整</strong>：结果保留指标、样本和实验条件，也呈现负向结果与统计疑点。</li><li><strong>材料复用方便</strong>：技术图、结果图和讲解建议集中整理，可离线展示，也有静态图可用于汇报。</li></ul>
+<p><strong>缺点</strong></p>
+<ul><li><strong>页面信息偏多</strong>：共 14 个面板，表格和说明较密，10 分钟内难以充分展开。</li><li><strong>主线不够集中</strong>：三篇论文并列展开，跨研究方向切换较多，听众需要不断调整关注点。</li><li><strong>现场讲解负担较重</strong>：部分技术名词和统计说明较细，需要讲者进一步解释。</li></ul>
+<p><strong>总结</strong>：适合作为组会备课和详细阅读材料；直接用于 10 分钟展示时，需要再压缩内容、突出一条主线。</p>
+<h3 id="A2">A2：算法代码库架构</h3>
+<p>输入材料：美赛 2026 年 C 题算法代码。</p>
+<p><strong>1. 测试 Prompt</strong></p>
+<p>首次生成：</p>
+<blockquote>请调用 Archify Skill，根据我提供的美赛算法代码项目，生成有代码证据支持的模块架构图。<br></blockquote>
+<p><strong>2. HTML 产物</strong></p>
+<div class="table-wrap"><table><tr><th>产物</th><th>内容</th></tr><tr><td><a href="artifacts/A2/architecture.html">Q1–Q4 完整模块架构图</a></td><td>展示各题模块、共享输入与分析旁支</td></tr><tr><td><a href="artifacts/A2/dataflow.html">全题数据流图</a></td><td>展示 Q1 产物如何被 Q2、Q3、Q4 等模块使用</td></tr></table></div>
+<p><strong>3. 优缺点</strong></p>
+<p><strong>优点</strong></p>
+<ul><li><strong>代码依据具体</strong>：模块和连接能追踪到源码文件、函数及行号，方便核对。</li><li><strong>依赖关系清楚</strong>：识别出 Q2、Q3、Q4 并列读取 Q1 产物，没有画成顺序调用。</li><li><strong>流程区分准确</strong>：区分模型训练、规则回放和数据交接，并标出无法确认的环节。</li></ul>
+<p><strong>缺点</strong></p>
+<ul><li><strong>首轮覆盖不全</strong>：只展示 Q1、Q3，用户追问后才补齐 Q2、Q4。</li><li><strong>查看路径较分散</strong>：总览和细节分布在六张图中，理解完整流程需要多次切换。</li><li><strong>端到端链路不完整</strong>：源码缺少原始数据到主表的生成环节，产物也只能保留这一缺口。</li></ul>
+<p><strong>总结</strong>：补齐后适合梳理代码结构和核对依赖；首轮范围判断需要改进。</p>
+<h2>三、Archify Agent 整体总结</h2>
+<p><strong>最适合的运用场景：把复杂材料整理成可查、可对照的技术资料。</strong> 论文比较、知识整理和代码架构分析中的优势最突出：能把分散的信息组织成图，保留论文或源码依据，方便逐项核对。B1、B2 的追加修改也能保留原有结构，适合持续补充和维护。</p>
+<p><strong>短板明显的运用场景：快速讲解、短时展示和复杂关系总览。</strong> B2、B5 内容偏长，B4 需要跨图切换，B1、B3 部分连线不易追踪。信息虽然齐全，但主次和阅读顺序还不够鲜明，展示前往往需要人工删减、重排。</p>
+<p><strong>同时，范围判断也需改进。</strong> A2 最初漏掉 Q2、Q4，追问后才补齐，说明面对开放式任务时，仍可能自行缩小范围。适合先用它整理完整材料，再由使用者确认覆盖范围和展示重点。</p></main></body></html>
